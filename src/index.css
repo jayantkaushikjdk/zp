@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Zoya's Portfolio Design System - Cybersecurity Professional Theme
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Dark cybersecurity theme */
+    --background: 220 25% 5%;
+    --foreground: 190 100% 95%;
+
+    --card: 220 20% 8%;
+    --card-foreground: 190 100% 95%;
+
+    --popover: 220 20% 8%;
+    --popover-foreground: 190 100% 95%;
+
+    --primary: 190 100% 60%;
+    --primary-foreground: 220 25% 5%;
+
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 190 100% 90%;
+
+    --muted: 220 15% 12%;
+    --muted-foreground: 190 30% 70%;
+
+    --accent: 190 100% 60%;
+    --accent-foreground: 220 25% 5%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 190 100% 95%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 15%;
+    --ring: 190 100% 60%;
+
+    --radius: 0.75rem;
+
+    /* Custom design tokens */
+    --cyber-primary: 190 100% 60%;
+    --cyber-secondary: 270 100% 70%;
+    --cyber-accent: 300 100% 65%;
+    --cyber-glow: 190 100% 50%;
+    --cyber-dark: 220 25% 3%;
+    --cyber-card: 220 20% 8%;
+    --cyber-border: 220 15% 20%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--cyber-primary)), hsl(var(--cyber-secondary)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--cyber-dark)), hsl(220 20% 8%));
+    --gradient-card: linear-gradient(145deg, hsl(var(--cyber-card)), hsl(220 15% 12%));
+
+    /* Shadows and glows */
+    --shadow-cyber: 0 10px 30px -10px hsl(var(--cyber-primary) / 0.3);
+    --glow-primary: 0 0 20px hsl(var(--cyber-primary) / 0.5);
+    --glow-accent: 0 0 15px hsl(var(--cyber-accent) / 0.4);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  /* Portfolio is always dark themed */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    background: linear-gradient(135deg, hsl(var(--cyber-dark)), hsl(220 20% 8%));
+    min-height: 100vh;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Cyber glow effects */
+  .cyber-glow {
+    box-shadow: var(--glow-primary);
+    transition: var(--transition-smooth);
+  }
+
+  .cyber-glow:hover {
+    box-shadow: var(--glow-primary), 0 0 30px hsl(var(--cyber-primary) / 0.7);
+    transform: translateY(-2px);
+  }
+
+  /* Animated gradient text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  /* Skill bar animations */
+  .skill-bar {
+    background: linear-gradient(90deg, hsl(var(--cyber-primary)), hsl(var(--cyber-secondary)));
+    animation: skill-fill 1.5s ease-out;
+  }
+
+  /* Card hover effects */
+  .project-card {
+    background: var(--gradient-card);
+    border: 1px solid hsl(var(--cyber-border));
+    transition: var(--transition-smooth);
+  }
+
+  .project-card:hover {
+    border-color: hsl(var(--cyber-primary) / 0.5);
+    box-shadow: var(--shadow-cyber);
+    transform: translateY(-5px);
+  }
+
+  /* Floating animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Typing animation */
+  .typing {
+    overflow: hidden;
+    border-right: 2px solid hsl(var(--cyber-primary));
+    white-space: nowrap;
+    margin: 0 auto;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes skill-fill {
+  from { width: 0%; }
+  to { width: var(--skill-width); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: hsl(var(--cyber-primary)); }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out;
+}
